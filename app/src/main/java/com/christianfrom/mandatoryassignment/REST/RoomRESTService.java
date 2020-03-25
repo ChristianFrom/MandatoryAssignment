@@ -12,5 +12,7 @@ import retrofit2.http.Path;
 public interface RoomRESTService {
     @GET("rooms")
     Call<List<Room>> getAllRooms();
+    @GET("rooms/")
+    Call<Room> getRoom();
 
 }

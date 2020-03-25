@@ -11,26 +11,55 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_gravity="center"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:layout_gravity="center">
 
-        <TextView
+
+
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="120dp"
-            android:id="@+id/welcomeTextView"
-            />
+            android:orientation="vertical"
+            android:layout_gravity="center_horizontal"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="All Rooms"
+                android:textSize="40dp" />
 
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:id="@+id/welcomeTextView"
+                android:textSize="25dp"
+                />
+        </LinearLayout>
 
-        <androidx.recyclerview.widget.RecyclerView
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/ReservationsRecyclerView"
-            android:layout_gravity="center_vertical"
-            />
+            android:layout_gravity="center"
+            android:orientation="vertical"
+            android:layout_marginTop="50dp">
+
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/PostLoginRoomsRecyclerView"
+                android:layout_gravity="center_horizontal"
+                />
+        </LinearLayout>
+
+
     </LinearLayout>
+
+
 
 
 

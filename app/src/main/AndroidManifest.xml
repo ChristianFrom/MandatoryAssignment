@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.christianfrom.mandatoryassignment">
+
     <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -10,7 +12,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MaterialComponents.DayNight.NoActionBar"
         android:usesCleartextTraffic="true">
-        <activity android:name=".SingleRoomActivity"></activity>
+        <activity android:name=".BookRoomActivity"></activity>
+        <activity android:name=".SingleRoomActivity" />
         <activity android:name=".PostLoginActivity" />
         <activity android:name=".LogInActivity" />
         <activity android:name=".MainActivity">

@@ -39,54 +39,53 @@ public class PostLoginActivity extends AppCompatActivity {
         FirebaseUser user = mAuth.getInstance().getCurrentUser();
         TextView welcomeEditText = findViewById(R.id.welcomeTextView);
         welcomeEditText.setText("Welcome " + user.getEmail());
-        getAllReservations();
-
+        getAllRooms();
     }
 
 
 
 
-
-    private void getAllReservations() {
-        ReservationRESTService rrs = ApiUtils.getReservationsService();
-        Call<List<Reservation>> getAllReservationsCall = rrs.getAllReservations();
+    private void getAllRooms() {
+        RoomRESTService rrs = ApiUtils.getRoomsService();
+        Call<List<Room>> getAllRoomsCall = rrs.getAllRooms();
         TextView messageView = findViewById(R.id.mainMessageTextView);
 
-        getAllReservationsCall.enqueue(new Callback<List<Reservation>>() {
+        getAllRoomsCall.enqueue(new Callback<List<Room>>() {
             @Override
-            public void onResponse(Call<List<Reservation>> call, Response<List<Reservation>> response) {
+            public void onResponse(Call<List<Room>> call, Response<List<Room>> response) {
                 if (response.isSuccessful()) {
-                    List<Reservation> allReservations = response.body();
-                    Log.d(LOG_TAG, allReservations.toString());
-                    populateRecyclerView(allReservations);
+                    List<Room> allRooms = response.body();
+                    Log.d(LOG_TAG, allRooms.toString());
+                    populateRecyclerView(allRooms);
                 } else {
                     String message = "Problem " + response.code() + " " + response.message();
                     Log.d(LOG_TAG, message);
+                    messageView.setText(message);
                 }
             }
 
             @Override
-            public void onFailure(Call<List<Reservation>> call, Throwable t) {
+            public void onFailure(Call<List<Room>> call, Throwable t) {
                 Log.e(LOG_TAG, t.getMessage());
+                messageView.setText(t.getMessage());
             }
         });
 
     }
 
-    private void populateRecyclerView(List<Reservation> allReservations)
+    private void populateRecyclerView(List<Room> allRooms)
     {
-        RecyclerView recyclerView = findViewById(R.id.ReservationsRecyclerView);
+        RecyclerView recyclerView = findViewById(R.id.PostLoginRoomsRecyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        RecyclerViewSimpleAdapter adapter = new RecyclerViewSimpleAdapter<>(allReservations);
+        RecyclerViewSimpleAdapter adapter = new RecyclerViewSimpleAdapter<>(allRooms);
         recyclerView.setAdapter(adapter);
         adapter.setOnItemClickListener((view, position, item) -> {
-            Reservation reservation = (Reservation) item;
+            Room room = (Room) item;
             Intent intent = new Intent(PostLoginActivity.this, SingleRoomActivity.class);
-            intent.putExtra(SingleRoomActivity.ROOM, reservation);
+            intent.putExtra(SingleRoomActivity.ROOM, room);
             startActivity(intent);
         });
     }
-
 
 
 

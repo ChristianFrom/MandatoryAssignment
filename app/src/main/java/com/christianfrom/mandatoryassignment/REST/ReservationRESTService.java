@@ -6,8 +6,11 @@ import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
+import retrofit2.http.Path;
 
 public interface ReservationRESTService {
     @GET("Reservations")
     Call<List<Reservation>> getAllReservations();
+    @GET("Reservations/room/{id}")
+    Call<List<Reservation>> getRoomReservations(@Path("id")int id);
 }
