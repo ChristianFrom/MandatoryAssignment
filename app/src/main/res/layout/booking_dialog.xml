@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    >
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Booking"
+        android:textSize="46dp"
+        android:background="#FFFFBB33"
+        android:gravity="center" />
+
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:hint="Purpose"
+        android:textSize="30dp"
+        android:id="@+id/purposeText"/>
+
+    <Button
+        android:layout_width="125dp"
+        android:layout_height="wrap_content"
+        android:text="Date"
+        android:layout_gravity="center"
+        android:id="@+id/dateButton"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/dateChosen"
+        android:layout_gravity="center"/>
+
+    <Button
+        android:layout_width="125dp"
+        android:layout_height="wrap_content"
+        android:text="Time From"
+        android:layout_gravity="center"
+        android:id="@+id/fromTimeButton"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/timeFromChosen"
+        android:layout_gravity="center"/>
+
+
+    <Button
+        android:layout_width="125dp"
+        android:layout_height="wrap_content"
+        android:text="Time To"
+        android:layout_gravity="center"
+        android:id="@+id/toTimeButton"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/timeToChosen"
+        android:layout_gravity="center"/>
+
+
+    <Button
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:text="Book"
+        android:backgroundTint="@color/colorPrimary"
+
+        android:layout_gravity="center"
+        android:id="@+id/bookButton" />
+
+</LinearLayout>

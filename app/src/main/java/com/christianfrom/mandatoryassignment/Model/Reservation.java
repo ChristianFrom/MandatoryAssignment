@@ -32,17 +32,9 @@ public class Reservation implements Serializable {
     public Reservation() {
     }
 
-    /**
-     * @param purpose
-     * @param fromTime
-     * @param id
-     * @param userId
-     * @param toTime
-     * @param roomId
-     */
-    public Reservation(Integer id, Integer fromTime, Integer toTime, String userId, String purpose, Integer roomId) {
+
+    public Reservation(Integer fromTime, Integer toTime, String userId, String purpose, Integer roomId) {
         super();
-        this.id = id;
         this.fromTime = fromTime;
         this.toTime = toTime;
         this.userId = userId;
