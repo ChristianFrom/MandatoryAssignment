@@ -70,7 +70,7 @@
         android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:text="Book"
-        android:backgroundTint="@color/colorPrimary"
+        android:backgroundTint="@color/colorPrimary_Lilla"
 
         android:layout_gravity="center"
         android:id="@+id/bookButton" />

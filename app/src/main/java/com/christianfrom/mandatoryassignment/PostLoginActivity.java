@@ -1,14 +1,23 @@
 package com.christianfrom.mandatoryassignment;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.MenuItemCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import androidx.core.view.MenuItemCompat;
+
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+import androidx.appcompat.widget.ShareActionProvider;
+import androidx.appcompat.widget.Toolbar;
+
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -26,19 +35,54 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+
+
 public class PostLoginActivity extends AppCompatActivity {
     private static final String LOG_TAG = "TEST";
     private FirebaseAuth mAuth;
+    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_post_login);
-        FirebaseUser user = mAuth.getInstance().getCurrentUser();
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+
+
+
         TextView welcomeEditText = findViewById(R.id.welcomeTextView);
         welcomeEditText.setText("Welcome " + user.getEmail());
         getAllRooms();
     }
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater menuInflater = getMenuInflater();
+        menuInflater.inflate(R.menu.menuitems, menu);
+        return true;
+
+
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.myreservations:
+                Intent intent = new Intent(this, myBookings.class);
+                startActivity(intent);
+            return true;
+
+
+
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
+
 
     private void getAllRooms() {
         RoomRESTService rrs = ApiUtils.getRoomsService();
@@ -84,12 +128,8 @@ public class PostLoginActivity extends AppCompatActivity {
 
 
 
-    //Todo tilføj en appbar
-
-
-
     public void logoutFloatButtonPressed(View view) {
-        mAuth.getInstance().signOut();
+        FirebaseAuth.getInstance().signOut();
         finish();
         Toast.makeText(this, "You have now logged out...", Toast.LENGTH_SHORT).show();
     }

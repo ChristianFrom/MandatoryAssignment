@@ -38,7 +38,7 @@ public class SingleRoomActivity extends AppCompatActivity {
     private static final String LOG_TAG = "ROOMS";
     private Room room;
     private FirebaseAuth mAuth;
-    FirebaseUser user = mAuth.getInstance().getCurrentUser();
+    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
     int timeFromSeconds;
     int timeToSeconds;
 

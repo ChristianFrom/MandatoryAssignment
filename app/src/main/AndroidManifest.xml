@@ -7,13 +7,13 @@
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
-        android:label="@string/app_name"
+        android:label="Room Booking"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MaterialComponents.DayNight.NoActionBar"
         android:usesCleartextTraffic="true">
-        <activity android:name=".Booking_Dialog"></activity>
-        <activity android:name=".BookRoomActivity" />
+        <activity android:name=".myBookings"></activity>
+        <activity android:name=".mybookings" />
         <activity android:name=".SingleRoomActivity" />
         <activity android:name=".PostLoginActivity" />
         <activity android:name=".LogInActivity" />

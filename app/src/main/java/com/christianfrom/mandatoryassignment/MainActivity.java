@@ -29,7 +29,7 @@ import retrofit2.Response;
 public class MainActivity extends AppCompatActivity {
 private static final String LOG_TAG = "TEST";
 private FirebaseAuth mAuth;
-FirebaseUser user = mAuth.getInstance().getCurrentUser();
+FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -109,7 +109,7 @@ FirebaseUser user = mAuth.getInstance().getCurrentUser();
     }
 
     public void logoutFloatButtonPressed(View view) {
-        mAuth.getInstance().signOut();
+        FirebaseAuth.getInstance().signOut();
         Intent intent = new Intent(MainActivity.this, MainActivity.class);
         startActivity(intent);
         //Todo Kan det her gøres på en bedre måde?
