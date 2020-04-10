@@ -1,5 +1,6 @@
 package com.christianfrom.mandatoryassignment;
 
+import androidx.annotation.DrawableRes;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -8,11 +9,16 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.christianfrom.mandatoryassignment.Model.Room;
 import com.christianfrom.mandatoryassignment.REST.ApiUtils;
 import com.christianfrom.mandatoryassignment.REST.RoomRESTService;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import java.util.List;
 
@@ -22,11 +28,13 @@ import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity {
 private static final String LOG_TAG = "TEST";
-
+private FirebaseAuth mAuth;
+FirebaseUser user = mAuth.getInstance().getCurrentUser();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        userLoggedIn();
         getAllRooms();
     }
 
@@ -36,14 +44,33 @@ private static final String LOG_TAG = "TEST";
     }
 
 
+    public void userLoggedIn() {
+        FloatingActionButton floatingButtonLogout = findViewById(R.id.floatingButtonLogout);
+        FloatingActionButton floatingButtonLogin = findViewById(R.id.floatingButtonLogin);
+
+        if (user != null) {
+            floatingButtonLogin.setVisibility(View.INVISIBLE);
+            floatingButtonLogout.setVisibility(View.VISIBLE);
+            Intent intent = new Intent(this, PostLoginActivity.class);
+            startActivity(intent);
+        }
+        else {
+            floatingButtonLogout.setVisibility(View.INVISIBLE);
+            floatingButtonLogin.setVisibility(View.VISIBLE);
+        }
+    }
 
 
     private void getAllRooms() {
         RoomRESTService rrs = ApiUtils.getRoomsService();
         Call<List<Room>> getAllRoomsCall = rrs.getAllRooms();
         TextView messageView = findViewById(R.id.mainMessageTextView);
-
         messageView.setText("");
+
+
+        //Todo tilføj noget som viser at den loader
+
+
         getAllRoomsCall.enqueue(new Callback<List<Room>>() {
             @Override
             public void onResponse(Call<List<Room>> call, Response<List<Room>> response) {
@@ -81,4 +108,11 @@ private static final String LOG_TAG = "TEST";
         });
     }
 
+    public void logoutFloatButtonPressed(View view) {
+        mAuth.getInstance().signOut();
+        Intent intent = new Intent(MainActivity.this, MainActivity.class);
+        startActivity(intent);
+        //Todo Kan det her gøres på en bedre måde?
+        Toast.makeText(this, "You have now logged out...", Toast.LENGTH_SHORT).show();
+    }
 }

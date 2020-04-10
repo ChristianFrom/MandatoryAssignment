@@ -25,11 +25,12 @@ import com.google.firebase.auth.FirebaseUser;
 import java.util.Calendar;
 import java.util.List;
 import static java.lang.Math.toIntExact;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-
+//Todo Tilføj swipe gesture, så man kan swipe tilbage.
 
 public class SingleRoomActivity extends AppCompatActivity {
     private int mYear, mMonth, mDay, fromHour, fromMinute, toHour, toMinute;
@@ -180,9 +181,12 @@ public class SingleRoomActivity extends AppCompatActivity {
                 saveReservationCall.enqueue(new Callback<Reservation>() {
                     @Override
                     public void onResponse(Call<Reservation> call, Response<Reservation> response) {
-                        if (response.isSuccessful()) {
-                            Reservation newReservation = response.body();
-                            Log.d("newreservation", newReservation.toString());
+                        Reservation newReservation = response.body();
+                        Log.d("newreservation", newReservation.toString());
+                        if (true)  {
+                            //Reservation newReservation = response.body();
+                            //Log.d("newreservation", newReservation.toString());
+
                             Toast.makeText(SingleRoomActivity.this, "New reservation added, id: " + newReservation.getId(), Toast.LENGTH_SHORT);
                             //Todo få toasten til at komme frem, og lukke dialog boksen, når den er færdig.
                         } else {
@@ -190,6 +194,7 @@ public class SingleRoomActivity extends AppCompatActivity {
                             Log.e("reservation", problem);
                             Toast.makeText(SingleRoomActivity.this, "problem", Toast.LENGTH_SHORT).show();
                         }
+                        Log.d("post", response.toString());
                     }
 
                     @Override

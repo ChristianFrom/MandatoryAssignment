@@ -55,6 +55,20 @@
         app:srcCompat="@drawable/login"
         app:fabSize="auto"
         android:onClick="loginFloatButtonPressed"
+        android:id="@+id/floatingButtonLogin"
+        />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        style="@style/Widget.MaterialComponents.FloatingActionButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:layout_gravity="bottom|end"
+        android:tooltipText="Logout"
+        app:srcCompat="@drawable/logout"
+        app:fabSize="auto"
+        android:onClick="logoutFloatButtonPressed"
+        android:id="@+id/floatingButtonLogout"
         />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

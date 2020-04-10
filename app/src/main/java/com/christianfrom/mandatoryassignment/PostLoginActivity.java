@@ -30,8 +30,6 @@ public class PostLoginActivity extends AppCompatActivity {
     private static final String LOG_TAG = "TEST";
     private FirebaseAuth mAuth;
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,9 +39,6 @@ public class PostLoginActivity extends AppCompatActivity {
         welcomeEditText.setText("Welcome " + user.getEmail());
         getAllRooms();
     }
-
-
-
 
     private void getAllRooms() {
         RoomRESTService rrs = ApiUtils.getRoomsService();
@@ -87,6 +82,9 @@ public class PostLoginActivity extends AppCompatActivity {
         });
     }
 
+
+
+    //Todo tilføj en appbar
 
 
 
