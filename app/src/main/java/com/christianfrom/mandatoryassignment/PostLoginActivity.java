@@ -49,9 +49,6 @@ public class PostLoginActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-
-
-
         TextView welcomeEditText = findViewById(R.id.welcomeTextView);
         welcomeEditText.setText("Welcome " + user.getEmail());
         getAllRooms();

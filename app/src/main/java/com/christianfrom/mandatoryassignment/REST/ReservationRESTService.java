@@ -21,11 +21,11 @@ public interface ReservationRESTService {
     @GET("Reservations/user/{userid}")
     Call<List<Reservation>> getRoomReservationsByUser(@Path("userid")String userid);
 
-    @DELETE("Reservations/room/{id}")
-    Call<Reservation> deleteReservation(@Path("id") int id);
+    @DELETE("Reservations/{id}")
+    Call<Void> deleteReservation(@Path("id") int id);
 
     @POST("Reservations")
-    Call<Reservation> saveReservationBody(@Body Reservation reservation);
+    Call<Integer> saveReservationBody(@Body Reservation reservation);
 
 
 }

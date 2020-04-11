@@ -2,6 +2,7 @@ package com.christianfrom.mandatoryassignment;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.GestureDetectorCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import android.app.DatePickerDialog;
@@ -9,6 +10,8 @@ import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.GestureDetector;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -38,6 +41,7 @@ public class SingleRoomActivity extends AppCompatActivity {
     private static final String LOG_TAG = "ROOMS";
     private Room room;
     private FirebaseAuth mAuth;
+    private GestureDetectorCompat gestureDetector;
     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
     int timeFromSeconds;
     int timeToSeconds;
@@ -46,10 +50,11 @@ public class SingleRoomActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_single_room);
+        gestureDetector = new GestureDetectorCompat(this, new GestureListener());
         getSingleRoomReservations();
+
         Intent intent = getIntent();
         room = (Room) intent.getSerializableExtra(ROOM);
-
         Log.d(LOG_TAG, room.toString());
 
         TextView id = findViewById(R.id.singleRoomIdText);
@@ -67,6 +72,24 @@ public class SingleRoomActivity extends AppCompatActivity {
         } else {
             remarks.setText(room.getRemarks());
         }
+    }
+
+    private class GestureListener extends GestureDetector.SimpleOnGestureListener {
+
+        @Override
+        public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
+            boolean leftSwipe = e1.getX() < e2.getX();
+            if (leftSwipe){
+                finish();
+            }
+            return super.onFling(e1, e2, velocityX, velocityY);
+        }
+    }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent event){
+        gestureDetector.onTouchEvent(event);
+        return super.onTouchEvent(event);
     }
 
 
@@ -162,7 +185,6 @@ public class SingleRoomActivity extends AppCompatActivity {
                 }, toHour, toMinute, true);
                 timePickerDialog.show();
 
-
             }
         });
 
@@ -177,28 +199,26 @@ public class SingleRoomActivity extends AppCompatActivity {
                 ReservationRESTService rrs = ApiUtils.getReservationsService();
                 Reservation reservation = new Reservation(timeFromSeconds, timeToSeconds, userId, purpose, roomId);
 
-                Call<Reservation> saveReservationCall = rrs.saveReservationBody(reservation);
-                saveReservationCall.enqueue(new Callback<Reservation>() {
+                Call<Integer> saveReservationCall = rrs.saveReservationBody(reservation);
+                saveReservationCall.enqueue(new Callback<Integer>() {
                     @Override
-                    public void onResponse(Call<Reservation> call, Response<Reservation> response) {
-                        Reservation newReservation = response.body();
-                        Log.d("newreservation", newReservation.toString());
-                        if (true)  {
-                            //Reservation newReservation = response.body();
-                            //Log.d("newreservation", newReservation.toString());
+                    public void onResponse(Call<Integer> call, Response<Integer> response) {
+                            if (response.isSuccessful())  {
 
-                            Toast.makeText(SingleRoomActivity.this, "New reservation added, id: " + newReservation.getId(), Toast.LENGTH_SHORT);
-                            //Todo få toasten til at komme frem, og lukke dialog boksen, når den er færdig.
-                        } else {
-                            String problem = "Problem: " + response.code() + " " + response.message();
-                            Log.e("reservation", problem);
-                            Toast.makeText(SingleRoomActivity.this, "problem", Toast.LENGTH_SHORT).show();
-                        }
+                                int newReservation = response.body();
+                                Toast.makeText(SingleRoomActivity.this, "New reservation added, id: " + newReservation, Toast.LENGTH_SHORT).show();
+                                alertDialog.dismiss();
+                                refresh();
+                            } else {
+                                String problem = "Problem: " + response.code() + " " + response.message();
+                                Log.e("reservation", problem);
+                                Toast.makeText(SingleRoomActivity.this, "problem", Toast.LENGTH_SHORT).show();
+            }
                         Log.d("post", response.toString());
                     }
 
                     @Override
-                    public void onFailure(Call<Reservation> call, Throwable t) {
+                    public void onFailure(Call<Integer> call, Throwable t) {
                         Log.e("reservation", t.getMessage());
                     }
                 });
@@ -255,6 +275,18 @@ public class SingleRoomActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         RecyclerViewSimpleAdapter adapter = new RecyclerViewSimpleAdapter<>(allReservations);
         recyclerView.setAdapter(adapter);
+    }
+
+
+
+    public void refresh() {
+        Intent intent = getIntent();
+        overridePendingTransition(0, 0);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+        finish();
+        overridePendingTransition(0, 0);
+        startActivity(intent);
+        //Todo Er der en bedre måde en det her?
     }
 
     public void backButtonClicked(View view) {

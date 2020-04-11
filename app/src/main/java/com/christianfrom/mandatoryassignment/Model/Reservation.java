@@ -42,6 +42,11 @@ public class Reservation implements Serializable {
         this.roomId = roomId;
     }
 
+    public Reservation(Integer id) {
+        super();
+        this.id = id;
+    }
+
     public Integer getId() {
         return id;
     }
