@@ -1,6 +1,5 @@
 package com.christianfrom.mandatoryassignment;
 
-import androidx.annotation.DrawableRes;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -9,9 +8,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.christianfrom.mandatoryassignment.Model.Room;
 import com.christianfrom.mandatoryassignment.REST.ApiUtils;
@@ -28,8 +25,7 @@ import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity {
 private static final String LOG_TAG = "TEST";
-private FirebaseAuth mAuth;
-FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+    private final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,7 +40,7 @@ FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
     }
 
 
-    public void userLoggedIn() {
+    private void userLoggedIn() {
         FloatingActionButton floatingButtonLogin = findViewById(R.id.floatingButtonLogin);
 
         if (user != null) {

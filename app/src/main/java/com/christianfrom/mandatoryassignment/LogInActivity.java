@@ -20,10 +20,8 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-import org.junit.jupiter.api.Test;
-
 public class LogInActivity extends AppCompatActivity {
-    public FirebaseAuth mAuth;
+    private FirebaseAuth mAuth;
     private static final String TAG = "authentication";
 
     @Override
@@ -73,12 +71,12 @@ public class LogInActivity extends AppCompatActivity {
     }
 
 
-    public void hideKeyboard(View view) {
+    private void hideKeyboard(View view) {
         InputMethodManager inputMethodManager =(InputMethodManager)getSystemService(Activity.INPUT_METHOD_SERVICE);
         inputMethodManager.hideSoftInputFromWindow(view.getWindowToken(), 0);
     }
 
-    public void loginSuccess(View view){
+    private void loginSuccess(View view){
         EditText emailField = findViewById(R.id.loginEmailEditText);
         EditText passwordField = findViewById(R.id.loginPasswordEditText);
         TextView errorText = findViewById(R.id.loginErrorText);

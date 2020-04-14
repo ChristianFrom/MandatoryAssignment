@@ -43,11 +43,10 @@ public class SingleRoomActivity extends AppCompatActivity {
     public static final String ROOM = "room";
     private static final String LOG_TAG = "ROOMS";
     private Room room;
-    private FirebaseAuth mAuth;
     private GestureDetectorCompat gestureDetector;
-    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-    int timeFromSeconds;
-    int timeToSeconds;
+    private final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+    private int timeFromSeconds;
+    private int timeToSeconds;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -233,7 +232,7 @@ public class SingleRoomActivity extends AppCompatActivity {
     }
 
 
-    public void userLoggedIn() {
+    private void userLoggedIn() {
         if (user != null) {
             Log.d("user", user.getEmail());
             Button bookRoomButton = findViewById(R.id.bookRoomButton);
@@ -244,7 +243,7 @@ public class SingleRoomActivity extends AppCompatActivity {
         }
     }
 
-    public void hideKeyboard(View view) {
+    private void hideKeyboard(View view) {
         InputMethodManager inputMethodManager =(InputMethodManager)getSystemService(Activity.INPUT_METHOD_SERVICE);
         inputMethodManager.hideSoftInputFromWindow(view.getWindowToken(), 0);
     }
@@ -290,7 +289,7 @@ public class SingleRoomActivity extends AppCompatActivity {
 
 
 
-    public void refresh() {
+    private void refresh() {
         Intent intent = getIntent();
         overridePendingTransition(0, 0);
         intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);

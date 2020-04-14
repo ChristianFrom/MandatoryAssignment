@@ -8,6 +8,6 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:id="@+id/deleteButton"
-        android:text="Delete Reservation"
+        android:text="Delete Booking"
         android:backgroundTint="@color/red"/>
 </LinearLayout>

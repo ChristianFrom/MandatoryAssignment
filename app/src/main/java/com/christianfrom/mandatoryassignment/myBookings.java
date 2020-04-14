@@ -29,9 +29,8 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class myBookings extends AppCompatActivity {
-    private FirebaseAuth mAuth;
-    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-    ReservationRESTService rrs = ApiUtils.getReservationsService();
+    private final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+    private final ReservationRESTService rrs = ApiUtils.getReservationsService();
     private GestureDetectorCompat gestureDetector;
 
 
@@ -101,8 +100,6 @@ public class myBookings extends AppCompatActivity {
         RecyclerViewSimpleAdapter adapter = new RecyclerViewSimpleAdapter<>(myReservations);
         recyclerView.setAdapter(adapter);
         adapter.setOnItemClickListener((view, position, item) -> {
-            //Todo Tilføj dialog som bruges til at slette reservationen
-
             final AlertDialog.Builder dialog = new AlertDialog.Builder(myBookings.this);
             View mView = getLayoutInflater().inflate(R.layout.single_booking_dialog, null);
             Button deleteButton = mView.findViewById(R.id.deleteButton);
@@ -122,12 +119,12 @@ public class myBookings extends AppCompatActivity {
                        @Override
                        public void onResponse(Call<Void> call, Response<Void> response) {
                            if (response.isSuccessful()){
-                               Toast.makeText(myBookings.this, "Reservation: " + reservationId + " has been deleted", Toast.LENGTH_SHORT).show();
+                               Toast.makeText(myBookings.this, "Booking: " + reservationId + " has been deleted", Toast.LENGTH_SHORT).show();
                                alertDialog.dismiss();
                                refresh();
                            }
                            else {
-                               Toast.makeText(myBookings.this, "Reservation: " + reservationId + " could not be deleted", Toast.LENGTH_SHORT).show();
+                               Toast.makeText(myBookings.this, "Booking: " + reservationId + " could not be deleted", Toast.LENGTH_SHORT).show();
                            }
                        }
 
@@ -146,7 +143,7 @@ public class myBookings extends AppCompatActivity {
     }
 
 
-    public void refresh() {
+    private void refresh() {
         Intent intent = getIntent();
         overridePendingTransition(0, 0);
         intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);

@@ -1,7 +1,6 @@
 package com.christianfrom.mandatoryassignment;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.view.MenuItemCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -9,23 +8,19 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
-import androidx.core.view.MenuItemCompat;
 
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.EditText;
-import androidx.appcompat.widget.ShareActionProvider;
+
 import androidx.appcompat.widget.Toolbar;
 
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.christianfrom.mandatoryassignment.Model.Reservation;
 import com.christianfrom.mandatoryassignment.Model.Room;
 import com.christianfrom.mandatoryassignment.REST.ApiUtils;
-import com.christianfrom.mandatoryassignment.REST.ReservationRESTService;
 import com.christianfrom.mandatoryassignment.REST.RoomRESTService;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -40,8 +35,7 @@ import retrofit2.Response;
 
 public class PostLoginActivity extends AppCompatActivity {
     private static final String LOG_TAG = "TEST";
-    private FirebaseAuth mAuth;
-    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+    private final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,15 +60,12 @@ public class PostLoginActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.myreservations:
-                Intent intent = new Intent(this, myBookings.class);
-                startActivity(intent);
+        if (item.getItemId() == R.id.myreservations) {
+            Intent intent = new Intent(this, myBookings.class);
+            startActivity(intent);
             return true;
-
-            default:
-                return super.onOptionsItemSelected(item);
         }
+        return super.onOptionsItemSelected(item);
     }
 
 
@@ -132,7 +123,7 @@ public class PostLoginActivity extends AppCompatActivity {
     }
 
 
-    public void refresh() {
+    private void refresh() {
         Intent intent = new Intent(this, MainActivity.class);
         overridePendingTransition(0, 0);
         intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);

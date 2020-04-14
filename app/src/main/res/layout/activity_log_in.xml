@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -26,7 +25,7 @@
             android:hint="E-Mail"
             android:id="@+id/loginEmailEditText"
             android:inputType="textEmailAddress"
-            android:textSize="30dp"/>
+            android:textSize="30sp"/>
 
         <EditText
             android:layout_width="330dp"
@@ -36,7 +35,7 @@
             android:hint="Password"
             android:id="@+id/loginPasswordEditText"
             android:inputType="textPassword"
-            android:textSize="30dp"/>
+            android:textSize="30sp"/>
 
         <Button
             android:layout_width="wrap_content"
@@ -46,7 +45,7 @@
             android:text="Login"
             android:id="@+id/loginButton"
             android:onClick="loginButtonPressed"
-            android:textSize="30dp"
+            android:textSize="30sp"
             android:textColor="@color/colorAccent"
             />
 
@@ -69,7 +68,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
         android:layout_gravity="center"
-        android:textSize="20dp"
+        android:textSize="20sp"
         android:gravity="center"
         android:id="@+id/loginErrorText"/>
 

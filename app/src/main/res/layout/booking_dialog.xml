@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Booking"
-        android:textSize="46dp"
+        android:textSize="46sp"
         android:background="@color/zealandgul"
         android:gravity="center" />
 
@@ -21,8 +21,9 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:hint="Purpose"
-        android:textSize="30dp"
-        android:id="@+id/purposeText"/>
+        android:textSize="30sp"
+        android:id="@+id/purposeText"
+        android:inputType="text" />
 
     <Button
         android:layout_width="125dp"
