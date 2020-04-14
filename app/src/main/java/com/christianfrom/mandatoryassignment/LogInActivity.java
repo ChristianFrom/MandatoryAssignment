@@ -20,6 +20,8 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+import org.junit.jupiter.api.Test;
+
 public class LogInActivity extends AppCompatActivity {
     public FirebaseAuth mAuth;
     private static final String TAG = "authentication";
@@ -33,7 +35,6 @@ public class LogInActivity extends AppCompatActivity {
     }
 
 
-
     public void loginButtonPressed(final View view) {
         EditText emailField = findViewById(R.id.loginEmailEditText);
         EditText passwordField = findViewById(R.id.loginPasswordEditText);
@@ -43,7 +44,7 @@ public class LogInActivity extends AppCompatActivity {
         String emailString = emailField.getText().toString();
         String passwordString = passwordField.getText().toString();
         hideKeyboard(view);
-        if (emailString.length() > 4 && passwordString.length() > 4)
+        if (emailString.length() > 3 && passwordString.length() > 3)
         {
             progressbar.setVisibility(View.VISIBLE);
             mAuth.signInWithEmailAndPassword(emailString, passwordString)
@@ -58,8 +59,8 @@ public class LogInActivity extends AppCompatActivity {
                             } else {
                                 // If sign in fails, display a message to the user.
                                 progressbar.setVisibility(View.INVISIBLE);
+                                errorText.setText("Authentication failed");
                                 Log.w(TAG, "signInWithEmail:failure", task.getException());
-                                Toast.makeText(LogInActivity.this, "Authentication failed.", Toast.LENGTH_SHORT).show();
                             }
                             // ...
                         }
