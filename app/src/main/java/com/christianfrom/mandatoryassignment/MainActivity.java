@@ -45,17 +45,14 @@ FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
 
     public void userLoggedIn() {
-        FloatingActionButton floatingButtonLogout = findViewById(R.id.floatingButtonLogout);
         FloatingActionButton floatingButtonLogin = findViewById(R.id.floatingButtonLogin);
 
         if (user != null) {
             floatingButtonLogin.setVisibility(View.INVISIBLE);
-            floatingButtonLogout.setVisibility(View.VISIBLE);
             Intent intent = new Intent(this, PostLoginActivity.class);
             startActivity(intent);
         }
         else {
-            floatingButtonLogout.setVisibility(View.INVISIBLE);
             floatingButtonLogin.setVisibility(View.VISIBLE);
         }
     }
@@ -66,7 +63,6 @@ FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         Call<List<Room>> getAllRoomsCall = rrs.getAllRooms();
         TextView messageView = findViewById(R.id.mainMessageTextView);
         messageView.setText("");
-
 
         //Todo tilføj noget som viser at den loader
 
@@ -108,11 +104,4 @@ FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         });
     }
 
-    public void logoutFloatButtonPressed(View view) {
-        FirebaseAuth.getInstance().signOut();
-        Intent intent = new Intent(MainActivity.this, MainActivity.class);
-        startActivity(intent);
-        //Todo Kan det her gøres på en bedre måde?
-        Toast.makeText(this, "You have now logged out...", Toast.LENGTH_SHORT).show();
-    }
 }

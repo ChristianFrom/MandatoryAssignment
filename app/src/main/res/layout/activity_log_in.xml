@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".LogInActivity">
+    tools:context=".LogInActivity"
+    android:theme="@style/Zealand">
 
 
 
@@ -14,33 +15,62 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:layout_marginTop="150dp"
-        android:layout_gravity="center">
+        android:layout_gravity="center"
+        >
 
         <EditText
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:hint="E-Mail"
-        android:gravity="center"
-        android:id="@+id/loginEmailEditText"
-        android:inputType="textEmailAddress"/>
-
-        <EditText
-            android:layout_width="200dp"
+            android:layout_width="330dp"
             android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:hint="E-Mail"
+            android:id="@+id/loginEmailEditText"
+            android:inputType="textEmailAddress"
+            android:textSize="30dp"/>
+
+        <EditText
+            android:layout_width="330dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
             android:gravity="center"
             android:hint="Password"
             android:id="@+id/loginPasswordEditText"
-            android:inputType="textPassword"/>
+            android:inputType="textPassword"
+            android:textSize="30dp"/>
 
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
             android:layout_gravity="center"
             android:text="Login"
-            android:onClick="loginButtonPressed"/>
+            android:onClick="loginButtonPressed"
+            android:textSize="30dp"
+            android:textColor="@color/colorAccent"
+            />
 
     </LinearLayout>
 
+
+
+
+
+    <ProgressBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="30dp"
+        android:visibility="invisible"
+        android:id="@+id/progressbar"/>
+
+    <TextView
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:layout_gravity="center"
+        android:textSize="20dp"
+        android:gravity="center"
+        android:id="@+id/loginErrorText"/>
 
 
 

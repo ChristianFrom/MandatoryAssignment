@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GestureDetectorCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.Intent;
@@ -13,6 +15,7 @@ import android.util.Log;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -114,6 +117,7 @@ public class SingleRoomActivity extends AppCompatActivity {
         datetime.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                hideKeyboard(v);
                 final Calendar c = Calendar.getInstance();
                 mYear = c.get(Calendar.YEAR);
                 mMonth = c.get(Calendar.MONTH);
@@ -135,6 +139,7 @@ public class SingleRoomActivity extends AppCompatActivity {
         timeFrom.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                hideKeyboard(v);
                 final Calendar c = Calendar.getInstance();
                 fromHour = c.get(Calendar.HOUR_OF_DAY);
                 fromMinute = c.get(Calendar.MINUTE);
@@ -159,6 +164,7 @@ public class SingleRoomActivity extends AppCompatActivity {
         timeTo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                hideKeyboard(v);
                 final Calendar c = Calendar.getInstance();
                 toHour = c.get(Calendar.HOUR_OF_DAY);
                 toMinute = c.get(Calendar.MINUTE);
@@ -191,7 +197,6 @@ public class SingleRoomActivity extends AppCompatActivity {
         btn_book.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 String userId = user.getUid();
                 String purpose = purposeText.getText().toString().trim();
                 int roomId = room.getId();
@@ -238,6 +243,12 @@ public class SingleRoomActivity extends AppCompatActivity {
             errorText.setVisibility(View.VISIBLE);
         }
     }
+
+    public void hideKeyboard(View view) {
+        InputMethodManager inputMethodManager =(InputMethodManager)getSystemService(Activity.INPUT_METHOD_SERVICE);
+        inputMethodManager.hideSoftInputFromWindow(view.getWindowToken(), 0);
+    }
+
 
     private void getSingleRoomReservations() {
         Intent intent = getIntent();

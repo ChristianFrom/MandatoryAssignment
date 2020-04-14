@@ -3,6 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:theme="@style/Zealand"
     >
 
 
@@ -11,7 +12,7 @@
         android:layout_height="wrap_content"
         android:text="Booking"
         android:textSize="46dp"
-        android:background="#FFFFBB33"
+        android:background="@color/zealandgul"
         android:gravity="center" />
 
 
@@ -29,6 +30,7 @@
         android:text="Date"
         android:layout_gravity="center"
         android:id="@+id/dateButton"
+        android:textColor="@color/colorAccent"
         />
 
     <TextView
@@ -43,6 +45,7 @@
         android:text="Time From"
         android:layout_gravity="center"
         android:id="@+id/fromTimeButton"
+        android:textColor="@color/colorAccent"
         />
     <TextView
         android:layout_width="wrap_content"
@@ -57,6 +60,7 @@
         android:text="Time To"
         android:layout_gravity="center"
         android:id="@+id/toTimeButton"
+        android:textColor="@color/colorAccent"
         />
 
     <TextView
@@ -70,9 +74,9 @@
         android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:text="Book"
-        android:backgroundTint="@color/colorPrimary_Lilla"
-
+        android:backgroundTint="#095c0d"
         android:layout_gravity="center"
-        android:id="@+id/bookButton" />
+        android:id="@+id/bookButton"
+        android:textColor="#ffffff" />
 
 </LinearLayout>

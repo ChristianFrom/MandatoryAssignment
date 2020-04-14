@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".PostLoginActivity"
+    android:theme="@style/Zealand"
     >
 
 
@@ -14,8 +15,8 @@
         android:minHeight="?attr/actionBarSize"
         android:id="@+id/toolbar"
         android:elevation="4dp"
-        android:background="@color/toolbarBackground"
-        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        android:background="@color/zealandgul"
+        android:theme="@style/ThemeOverlay.AppCompat.Light"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
         />
 
@@ -24,7 +25,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:layout_gravity="center">
+        android:layout_gravity="center"
+        android:layout_marginTop="15dp">
 
 
 
@@ -55,18 +57,27 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="450dp"
             android:layout_gravity="center"
-            android:orientation="vertical"
-            android:layout_marginTop="50dp">
+            android:layout_marginTop="50dp"
+            android:orientation="vertical">
 
 
             <androidx.recyclerview.widget.RecyclerView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
                 android:id="@+id/PostLoginRoomsRecyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
                 android:layout_gravity="center_horizontal"
                 />
+            <ProgressBar
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:id="@+id/progressbar"
+                android:indeterminateTint="@color/zealandgul"
+                />
+
+
         </LinearLayout>
 
 
@@ -78,6 +89,7 @@
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         style="@style/Widget.MaterialComponents.FloatingActionButton"
+        android:backgroundTint="@color/zealandgul"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"

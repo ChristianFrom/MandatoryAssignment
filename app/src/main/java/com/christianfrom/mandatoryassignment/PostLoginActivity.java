@@ -18,6 +18,7 @@ import android.widget.EditText;
 import androidx.appcompat.widget.ShareActionProvider;
 import androidx.appcompat.widget.Toolbar;
 
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -61,7 +62,6 @@ public class PostLoginActivity extends AppCompatActivity {
         menuInflater.inflate(R.menu.menuitems, menu);
         return true;
 
-
     }
 
     @Override
@@ -71,8 +71,6 @@ public class PostLoginActivity extends AppCompatActivity {
                 Intent intent = new Intent(this, myBookings.class);
                 startActivity(intent);
             return true;
-
-
 
             default:
                 return super.onOptionsItemSelected(item);
@@ -85,13 +83,15 @@ public class PostLoginActivity extends AppCompatActivity {
         RoomRESTService rrs = ApiUtils.getRoomsService();
         Call<List<Room>> getAllRoomsCall = rrs.getAllRooms();
         TextView messageView = findViewById(R.id.mainMessageTextView);
-
+        ProgressBar progressBar = findViewById(R.id.progressbar);
+        progressBar.setVisibility(View.VISIBLE);
         getAllRoomsCall.enqueue(new Callback<List<Room>>() {
             @Override
             public void onResponse(Call<List<Room>> call, Response<List<Room>> response) {
                 if (response.isSuccessful()) {
                     List<Room> allRooms = response.body();
                     Log.d(LOG_TAG, allRooms.toString());
+                    progressBar.setVisibility(View.INVISIBLE);
                     populateRecyclerView(allRooms);
                 } else {
                     String message = "Problem " + response.code() + " " + response.message();
@@ -127,7 +127,18 @@ public class PostLoginActivity extends AppCompatActivity {
 
     public void logoutFloatButtonPressed(View view) {
         FirebaseAuth.getInstance().signOut();
-        finish();
+        refresh();
         Toast.makeText(this, "You have now logged out...", Toast.LENGTH_SHORT).show();
+    }
+
+
+    public void refresh() {
+        Intent intent = new Intent(this, MainActivity.class);
+        overridePendingTransition(0, 0);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+        finish();
+        overridePendingTransition(0, 0);
+        startActivity(intent);
+        //Todo Er der en bedre måde en det her?
     }
 }
