@@ -43,7 +43,6 @@ public class myBookings extends AppCompatActivity {
     }
 
 
-
     private class GestureListener extends GestureDetector.SimpleOnGestureListener {
 
         @Override
@@ -61,9 +60,6 @@ public class myBookings extends AppCompatActivity {
         gestureDetector.onTouchEvent(event);
         return super.onTouchEvent(event);
     }
-
-
-
 
 
     private void getMyReservations() {
@@ -133,8 +129,6 @@ public class myBookings extends AppCompatActivity {
                             Log.e("deleteerror", "Problem: " + t.getMessage());
                        }
                    });
-
-
                 }
             });
             alertDialog.show();

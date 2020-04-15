@@ -29,6 +29,7 @@ import com.christianfrom.mandatoryassignment.REST.ReservationRESTService;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import static java.lang.Math.toIntExact;
 
@@ -201,6 +202,7 @@ public class SingleRoomActivity extends AppCompatActivity {
                 int roomId = room.getId();
 
                 ReservationRESTService rrs = ApiUtils.getReservationsService();
+
                 Reservation reservation = new Reservation(timeFromSeconds, timeToSeconds, userId, purpose, roomId);
 
                 Call<Integer> saveReservationCall = rrs.saveReservationBody(reservation);

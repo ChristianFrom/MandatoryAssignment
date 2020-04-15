@@ -60,7 +60,8 @@
         android:layout_gravity="center"
         android:layout_marginTop="30dp"
         android:visibility="invisible"
-        android:id="@+id/progressbar"/>
+        android:id="@+id/progressbar"
+        android:indeterminateTint="@color/zealandgul"/>
 
     <TextView
         android:layout_width="350dp"

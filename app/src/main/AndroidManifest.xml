@@ -16,7 +16,7 @@
         <activity android:name=".SingleRoomActivity" />
         <activity android:name=".PostLoginActivity" />
         <activity android:name=".LogInActivity" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".StartPageKotlin">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

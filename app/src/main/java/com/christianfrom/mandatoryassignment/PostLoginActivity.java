@@ -55,7 +55,6 @@ public class PostLoginActivity extends AppCompatActivity {
         MenuInflater menuInflater = getMenuInflater();
         menuInflater.inflate(R.menu.menuitems, menu);
         return true;
-
     }
 
     @Override
@@ -124,7 +123,7 @@ public class PostLoginActivity extends AppCompatActivity {
 
 
     private void refresh() {
-        Intent intent = new Intent(this, MainActivity.class);
+        Intent intent = new Intent(this, StartPageKotlin.class);
         overridePendingTransition(0, 0);
         intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
         finish();
