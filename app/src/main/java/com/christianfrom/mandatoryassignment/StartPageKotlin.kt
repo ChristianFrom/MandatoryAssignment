@@ -33,7 +33,7 @@ class StartPageKotlin : AppCompatActivity() {
     }
 
 
-    fun populateRecyclerView(allRooms : List<Room>){
+    fun populateRecyclerView(allRooms: List<Room>) {
         mainRoomsRecyclerView.layoutManager = LinearLayoutManager(this)
         val adapter = RecyclerViewSimpleAdapter(allRooms)
         mainRoomsRecyclerView.adapter = adapter
@@ -48,12 +48,11 @@ class StartPageKotlin : AppCompatActivity() {
     }
 
     private fun userLoggedIn() {
-        if (user != null){
+        if (user != null) {
             floatingButtonLogin.hide()
             val intent = Intent(this, PostLoginActivity::class.java)
             startActivity(intent)
-        }
-        else {
+        } else {
             floatingButtonLogin.show()
         }
     }
